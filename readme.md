@@ -1,3 +1,61 @@
+# 作業
+1. フォークしたレポジトリをクローン
+```
+git clone --depth 1 -b keyball --recurse-submodules --shallow-submodules git@github.com:bushikov/qmk_firmware_for_keyball.git
+```
+
+2. キーマップとか修正
+
+3. qmkとかのインストール
+```
+./util/qmk_install.sh
+```
+- 必要なライブラリとともにqmkをインストールしてくれるっぽい
+
+qmkを個別にインストールする場合
+```
+brew install qmk/qmk/qmk
+```
+
+4. コンパイル
+```
+cd qmk_firmware_for_keyball
+
+# 作成した設定（下は、qmk_firmware_for_keyball/keyboards/keyball/keyball61/keymaps/bushikovに作成した設定を指定）
+make SKIP_GIT=yes keyball/keyball61:bushikov
+```
+- hexファイルが作成されるので、[Promicro Web Uploader](https://sekigon-gonnoc.github.io/promicro-web-updater/index.html)などで、インストールする
+
+以下のコマンドでもコンパイルしてくれるらしい
+```
+qmk compile -kb keyball/keyball61 -km bushikov
+```
+
+## TIPS
+- 自動マウスレイヤー（最後のレイヤー）で使えるのは、独自に定義したもの（KC_MY_BTN1とかKC_TO_CLICKABLE_INCなど）だけっぽい
+
+## 参考
+- [トラックボール付き自作キーボードをさらに使いやすくするファームウェア 【Keyball】【cocot46plus】](https://zenn.dev/takashicompany/articles/69b87160cda4b9)
+- [keyballの自動マウスレイヤーに戻る・進むボタンを追加する方法](https://note.com/twoboy03/n/n791f11d7f261)
+- ファームウェア
+    - takashicompanyさんバージョン
+        - [Keyball44](https://github.com/takashicompany/qmk_firmware/tree/keyball/keyboards/keyball/keyball44/keymaps/takashicompany)
+        - [Keyball39](https://github.com/takashicompany/qmk_firmware/tree/keyball/keyboards/keyball/keyball39/keymaps/takashicompany)
+        - [Keyball61](https://github.com/takashicompany/qmk_firmware/tree/keyball/keyboards/keyball/keyball61/keymaps/takashicompany)
+    - [kamiichi99さんバージョン](https://github.com/kamiichi99/keyball/tree/main/qmk_firmware/keyboards/keyball)
+    - [Yowkeesさんバージョン（オリジナル）](https://github.com/Yowkees/keyball/tree/main/qmk_firmware/keyboards/keyball)
+- [QMKファームウェアの書き込み(Pro Micro Web Updater利用)](https://yushakobo.zendesk.com/hc/ja/articles/1500011696701)
+  - ブラウザを使ってインストールできるPro Micro Web Updaterのやり方とか
+- [Remap for qmk_firmware v0.18 or lower](https://qmk018.remap-keys.app/)
+- [QMK Firmwareのキーコード一覧](https://github.com/qmk/qmk_firmware/blob/master/docs/keycodes.md)
+- [keyballのための はじめてのQMK firmware環境構築 Mac編](https://note.com/yinouet1001/n/n856b45220ad4)
+- [QMK Firmware公式ドキュメント](https://docs.qmk.fm/#/)
+- [KeyBallのファームウェアをアップグレードするぞ](https://wecanpanic.hatenablog.com/entry/2023/02/05/KeyBallのファームウェアをアップグレードするぞ)
+    - レイヤーを増やす、レイヤーのOLED表示、マウスの微調整などが参考になりそう
+
+---
+↓ オリジナル
+
 # Quantum Mechanical Keyboard Firmware
 
 [![Current Version](https://img.shields.io/github/tag/qmk/qmk_firmware.svg)](https://github.com/qmk/qmk_firmware/tags)
